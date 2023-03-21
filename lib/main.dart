@@ -50,11 +50,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    //adds a letter to actual text every 250ms without blocking
     Future.delayed(
       Duration.zero,
       () async {
         for (var i = 0; i < StringConstants.fullText.length; i++) {
-          _resizeContainer(StringConstants.fullText[i]);
+          setState(() {
+            actualText += StringConstants.fullText[i];
+            _resizeContainer();
+          });
           await Future<void>.delayed(const Duration(milliseconds: 250));
         }
       },
@@ -62,32 +66,28 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  void _resizeContainer(String text) {
-    final textToDisplay = actualText + text;
-    maxLines = _calculateNumberOfLines(textToDisplay, width, textStyle);
+  // resizes container based on state of the container
+  void _resizeContainer() {
+    maxLines = _calculateNumberOfLines(actualText, width, textStyle);
     final containerState =
         _containerStateService.getContainerState(width, height, maxLines);
 
-    setState(() {
-      switch (containerState) {
-        case ContainerState.one:
-          width = 72;
-          break;
-        case ContainerState.two:
-          width = 90;
-          break;
-        case ContainerState.three:
-          height = 90;
-          break;
-        case ContainerState.four:
-          width = 196;
-          break;
-        case ContainerState.none:
-          break;
-      }
-
-      actualText = textToDisplay;
-    });
+    switch (containerState) {
+      case ContainerState.one:
+        width = 72;
+        break;
+      case ContainerState.two:
+        width = 90;
+        break;
+      case ContainerState.three:
+        height = 90;
+        break;
+      case ContainerState.four:
+        width = 196;
+        break;
+      case ContainerState.none: //don't make any change
+        break;
+    }
   }
 
   int _calculateNumberOfLines(
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: AnimatedContainer(
           duration: const Duration(microseconds: 500),
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           constraints: BoxConstraints(
             minHeight: 72,
             minWidth: 72,

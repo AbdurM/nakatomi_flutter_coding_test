@@ -1,7 +1,9 @@
 import 'package:nakatomi_flutter_coding_test/services/container_state_service/container_state.dart';
 import 'package:nakatomi_flutter_coding_test/services/container_state_service/i_container_state_service.dart';
 
+// All container state related logic here.
 class ContainerStateService implements IContainerStateService {
+  // this is based of requirements in the notion tickets
   @override
   ContainerState getContainerState(double width, double height, int maxLines) {
     if (width == 72 && maxLines == 1) {

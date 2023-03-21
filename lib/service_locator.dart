@@ -4,6 +4,7 @@ import 'package:nakatomi_flutter_coding_test/services/container_state_service/i_
 
 GetIt serviceLocator = GetIt.instance;
 
+// register your services here
 void initServiceLocator() {
   serviceLocator
       .registerLazySingleton<IContainerStateService>(ContainerStateService.new);
