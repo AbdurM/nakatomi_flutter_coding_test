@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final textPainter = TextPainter(
       text: TextSpan(
         text: text,
-        style: textStyle, // Replace with your desired font size
+        style: textStyle,
       ),
       textDirection: TextDirection.ltr,
       maxLines: null, // Unlimited height
@@ -117,16 +117,17 @@ class _MyHomePageState extends State<MyHomePage> {
           duration: const Duration(microseconds: 500),
           padding: const EdgeInsets.all(8.0),
           constraints: BoxConstraints(
-              minHeight: 72,
-              minWidth: 72,
-              maxWidth: width + 10,
-              maxHeight: height + 10), // For border
+            minHeight: 72,
+            minWidth: 72,
+            maxWidth: width + 10,
+            maxHeight: height + 10,
+          ), // For border
           decoration: BoxDecoration(
             color: Colors.greenAccent.shade700,
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(8.0),
-              topRight: Radius.circular(8.0),
-              bottomRight: Radius.circular(8.0),
+              topLeft: Radius.circular(8),
+              topRight: Radius.circular(8),
+              bottomRight: Radius.circular(8),
             ),
             border: Border.all(
               color: Colors.grey,
@@ -137,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.only(bottom: 4.0),
+                padding: const EdgeInsets.only(bottom: 4),
                 constraints: const BoxConstraints(maxWidth: 300),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
